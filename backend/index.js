@@ -35,9 +35,12 @@ app.use(GlobalErrorHandler);
 
 const Port = process.env.PORT || 4000;
 
-app.listen(Port, () => {
-  connecToDB();
-  console.log("Server Listening on Port", Port);
-});
+connecToDB();
+
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(Port, () => {
+    console.log("Server Listening on Port", Port);
+  });
+}
 
 module.exports = app;
